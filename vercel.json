@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "buildCommand": "node lib/migrate.js",
+  "outputDirectory": "public",
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/auth/register",    "destination": "/api/auth/register.js"    },
+    { "source": "/api/auth/login",       "destination": "/api/auth/login.js"       },
+    { "source": "/api/auth/me",          "destination": "/api/auth/me.js"          },
+    { "source": "/api/accounts",         "destination": "/api/accounts/index.js"   },
+    { "source": "/api/accounts/open",    "destination": "/api/accounts/open.js"    },
+    { "source": "/api/transactions",     "destination": "/api/transactions/index.js"},
+    { "source": "/api/transactions/transfer", "destination": "/api/transactions/transfer.js"},
+    { "source": "/api/transactions/pay", "destination": "/api/transactions/pay.js" },
+    { "source": "/((?!api/).*)",         "destination": "/index.html"              }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin",  "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,PUT,DELETE,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type,Authorization" }
+      ]
+    }
+  ]
+}

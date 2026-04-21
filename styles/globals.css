@@ -1,0 +1,20 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --or:#FF6200;--ord:#CC4E00;--orl:#FFF4EE;--orm:rgba(255,98,0,.12);
+  --gr:#00A878;--grl:#E6F8F3;--re:#E8304A;--rel:#FEE8EB;
+  --bl:#1A73E8;--bll:#E8F0FE;--tx:#1A1A2E;--t2:#5A5A7A;--t3:#9A9ABB;
+  --bd:#E4E4F0;--bg:#F4F4FA;--wh:#FFFFFF;
+  --sh:0 2px 14px rgba(0,0,0,.08);--shl:0 8px 36px rgba(0,0,0,.13);
+  --r:14px;--rs:8px;
+}
+html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;font-size:14px;color:var(--tx);background:var(--bg);line-height:1.5;}
+h1,h2,h3,h4{font-weight:700;line-height:1.2;}
+button{cursor:pointer;border:none;font-family:inherit;font-size:14px;}
+input,select,textarea{font-family:inherit;font-size:14px;color:var(--tx);}
+a{text-decoration:none;color:inherit;}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:var(--bd);border-radius:4px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes slideUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
