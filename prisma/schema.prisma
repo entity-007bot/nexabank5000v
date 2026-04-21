@@ -7,6 +7,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
+enum AccountType {
+  CURRENT
+  SAVINGS
+  INVESTMENT
+}
+
+enum TransferStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REVERSED
+}
+
+enum TransferType {
+  INTERNAL
+  EXTERNAL
+  BILL_PAYMENT
+  STANDING_ORDER
+}
+
 model User {
   id            String    @id @default(cuid())
   firstName     String
@@ -29,6 +54,7 @@ model User {
   accounts      Account[]
   sentTransfers     Transfer[] @relation("SentTransfers")
   receivedTransfers Transfer[] @relation("ReceivedTransfers")
+
   @@index([email])
   @@index([userId])
 }
@@ -49,6 +75,7 @@ model Account {
   user        User        @relation(fields: [userId], references: [id])
   debitTx     Transfer[]  @relation("FromAccount")
   creditTx    Transfer[]  @relation("ToAccount")
+
   @@index([accountNo])
   @@index([userId])
 }
@@ -66,15 +93,12 @@ model Transfer {
   status        TransferStatus @default(COMPLETED)
   type          TransferType   @default(INTERNAL)
   createdAt     DateTime       @default(now())
-  fromAccount   Account        @relation("FromAccount", fields: [fromAccountId], references: [id])
-  toAccount     Account        @relation("ToAccount",   fields: [toAccountId],   references: [id])
-  fromUser      User           @relation("SentTransfers",     fields: [fromUserId], references: [id])
-  toUser        User           @relation("ReceivedTransfers", fields: [toUserId],   references: [id])
+
+  fromAccount   Account @relation("FromAccount", fields: [fromAccountId], references: [id])
+  toAccount     Account @relation("ToAccount", fields: [toAccountId], references: [id])
+  fromUser      User    @relation("SentTransfers", fields: [fromUserId], references: [id])
+  toUser        User    @relation("ReceivedTransfers", fields: [toUserId], references: [id])
+
   @@index([fromUserId])
   @@index([toUserId])
 }
-
-enum Role          { USER ADMIN }
-enum AccountType   { CURRENT SAVINGS INVESTMENT }
-enum TransferStatus{ PENDING COMPLETED FAILED REVERSED }
-enum TransferType  { INTERNAL EXTERNAL BILL_PAYMENT STANDING_ORDER }
