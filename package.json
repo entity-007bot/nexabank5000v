@@ -21,9 +21,9 @@
     "bcryptjs": "2.4.3",
     "jsonwebtoken": "9.0.2",
     "cookies-next": "4.2.1",
-    "recharts": "2.12.7",
 
-    "pg": "8.11.5"
+    "pg": "8.11.5",
+    "recharts": "2.12.7"
   },
   "devDependencies": {
     "prisma": "5.16.0",
