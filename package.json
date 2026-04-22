@@ -29,6 +29,7 @@
     "@types/react-dom": "18.2.22",
     "@types/bcryptjs": "2.4.6",
     "@types/jsonwebtoken": "9.0.6",
+    "@types/jsonwebtoken": "9.0.6",
     "typescript": "5.4.5",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.5"
